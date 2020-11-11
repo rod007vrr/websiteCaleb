@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>home</title>
+<!--
+
+-->
+<html>
+
+<body style="background-color: #F3FFFF;">
+    <div class="section" >
+        <div class="columns w-row">
+            <div class="column-3 w-col w-col-4">
+                <div>
+                    <h1 class="heading-4">Personal Journal</h1>
+                </div>
+                <div>
+                    <div>
+                        <h3>New post</h3>
+                    </div>
+                    <div>
+                        <div class="w-form">
+                            <form method="post">
+                                    <input name="journal" id="journal" class="w-input" required>
+                                    <input type="submit" value="Post" class="w-button">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="div-block-3">
+                        <h3>Past posts</h3>
+                    </div>
+
+
+                    
+                    <div class="div-block-2">
+                        <ul role="list" class="list">
+                            {% for journal in journalPosts %}
+                            {% if g.user['id'] == journal['author_id'] %}
+                            <li class="list-item">
+                                <h5>{{journal['title']}}</h5>
+                                <p>{{ journal.body }}</p>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="column-2 w-col w-col-4">
+                <div>
+                    <div>
+                        <h1 class="heading-3">Feed</h1>
+                    </div>
+                </div>
+                <div>
+                    <ul role="list" class="list-2">
+                        {% for post in feedPosts %}
+                        <li class="list-item">
+                            <h5>{{ post['title'] }}</h5>
+                            <h6>posted on {{ post['created'].strftime('%Y-%m-%d') }}</h6>
+                            <p>{{ post['body'] }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="column-4 w-col w-col-4">
+                <div class="div-block-5">
+                    <div class="div-block-4">
+                        <div>
+                            <h1 class="heading-2">Exercises</h1>
+                        </div>
+                        <div class="div-block-7">
+                            <ul role="list" class="list-3">
+                                {% for exercise in exercises %}
+                                <li>
+                                    <div class="w-row">
+                                        <div class="w-col w-col-4">
+                                            <img
+                                                src="website\templates\home\images\placeholder.png"
+                                                alt="">
+                                        </div>
+                                        <div class="w-col w-col-8">
+                                            <div>
+                                                <h4>{{ exercise['title'] }}</h4>
+                                            </div>
+                                            <p>{{ exercise['descript'] }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="div-block-6">
+                        <div>
+                            <h1>Weekly summary</h1>
+                        </div>
+                        <div>
+                            <p>Placeholder text</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

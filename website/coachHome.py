@@ -18,9 +18,9 @@ def coachHome():
     if session["isCoach"] == 0:
         return redirect(url_for("home.home"))
     userList = db.execute(
-        "SELECT title, body, created"
-        " FROM feedPosts"
-        " ORDER BY created DESC"
+        "SELECT username"
+        " FROM user"
+        " ORDER BY id DESC"
     )
     feedPosts = db.execute(
         "SELECT title, body, created"

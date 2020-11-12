@@ -25,10 +25,16 @@
                             {% for journal in journalPosts %}
                             <div style="background-color: aqua; margin-right: 10%;">
                                 <li class="list-item">
-                                    <h4 id="testingMoment" onclick="renderNew()">{{ journal['username'] }}</h5>
+                                    <h4 id="monkey" onclick="renderNew()">{{ journal['username'] }}</h5>
                                     <script>
                                         function renderNew(){
-                                            document.getElementById("testingMoment").innerHTML = "YOU CLICKED ME!";
+                                            var newItem = document.createElement("p");
+                                            var textnode = document.createTextNode("Water");
+                                            newItem.appendChild(textnode);
+
+                                            var list = document.getElementById("monkey");
+                                            list.insertBefore(newItem, list.childNodes[1]);
+                                            
                                         }
                                     </script>
                                     <p>{{ journal.body }}</p>

@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <title>home</title>
-<!--
-
--->
 <html>
-
+<head>
+    <script type="text/javascript" src="epic.js"></script>
+</head>
 <body style="background-color: #F3FFFF;">
     <div class="section">
         <div class="columns w-row">
@@ -26,17 +25,6 @@
                             <div style="background-color: aqua; margin-right: 10%;">
                                 <li class="list-item">
                                     <h4 id="monkey" onclick="renderNew()">{{ journal['username'] }}</h5>
-                                    <script>
-                                        function renderNew(){
-                                            var newItem = document.createElement("p");
-                                            var textnode = document.createTextNode("Water");
-                                            newItem.appendChild(textnode);
-
-                                            var list = document.getElementById("monkey");
-                                            list.insertBefore(newItem, list.childNodes[1]);
-                                            
-                                        }
-                                    </script>
                                     <p>{{ journal.body }}</p>
                                     <p>endjournal</p>
                                 </li>
@@ -127,6 +115,5 @@
         </div>
     </div>
 </body>
-
 </html>
 {% endblock %}

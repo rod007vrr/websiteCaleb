@@ -1,9 +1,16 @@
-function renderNew() {
-    var newItem = document.createElement("p");
-    var textnode = document.createTextNode("Water");
-    newItem.appendChild(textnode);
+$(document).ready(function() {
+  function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+});
 
-    var list = document.getElementById("monkey");
-    list.insertBefore(newItem, list.childNodes[1]);
 
-}
+
+
+
+

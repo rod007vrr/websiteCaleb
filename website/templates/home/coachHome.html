@@ -2,9 +2,7 @@
 {% block content %}
 <title>home</title>
 <html>
-<head>
-    <script type="text/javascript" src="{{  url_for('static', filename='epic.js')  }}"></script>
-</head>
+
 <body style="background-color: #F3FFFF;">
     <div class="section">
         <div class="columns w-row">
@@ -13,6 +11,9 @@
                 <div>
                     <h1 class="heading-4">Personal Journal</h1>
                 </div>
+
+                
+
                 <div>
                     <div class="div-block-3">
                         <h3>Athlete posts</h3>
@@ -20,19 +21,31 @@
                     <div class="div-block-2"  style="max-height: 100%;">
                         <ul role="list" class="list" style="overflow: auto; height: 700px;">
 
+                            <script>
 
+                                for (i = 0; i < cars.length; i++) {
+                                    text += cars[i] + "<br>";
+                                }
+                                function myFunction() {
+                                      var x = document.getElementById("myDIV");
+                                      if (x.style.display === "none") {
+                                        x.style.display = "block";
+                                      } else {
+                                        x.style.display = "none";
+                                        console.log(0);
+                                      }
+                                }
+                            </script>
                             {% for journal in journalPosts %}
+                            
                             <div style="background-color: aqua; margin-right: 10%;">
                                 <li class="list-item">
-                                    <h4 id="monkey" onclick="renderNew()">{{ journal['username'] }}</h5>
-                                    <p>{{ journal.body }}</p>
-                                    <p>endjournal</p>
+                                    <h4 onclick="myFunction()">{{ journal['username'] }}</h5>
+                                        <p id="myDIV" style="display: block;">{{ journal.body }}</p>
+                                    <div ><p >endjournal</p></div>
+                                    CONVERT MON
                                 </li>
                             </div>
-                            {% endfor %}
-
-                            {% for user in userList %}
-                            <p>{{ user.username }}</p>
                             {% endfor %}
 
                         </ul>

@@ -40,8 +40,10 @@ def coachHome():
     if request.method == 'POST':
         title = request.form['postTitle']
         body = request.form['postBody']
+        '''
         name = request.form['exerName']
         descript = request.form['exerDescript']
+        '''
         error = None
 
         print("lmao")
@@ -53,10 +55,12 @@ def coachHome():
             values[0,0] = 1
         if body:
             values[0,1] = 1
+        '''
         if name:
             values[1,0] = 1
         if descript:
             values[1,1] = 1
+        '''
         
         for n in values[0]:
             if n != 0:
@@ -76,12 +80,14 @@ def coachHome():
                     ' VALUES (?, ?)',
                     (title, body)
                 )
+            '''
             if formChoice == 1:
                 db.execute(
                     'INSERT INTO exercises (title, descript)'
                     ' VALUES (?, ?)',
                     (name, descript)
                 )
+            '''
             db.commit()
     return render_template('home/coachHome.html', feedPosts=feedPosts, journalPosts=journalPosts, exercises=exercises, userList = userList)
 

@@ -84,3 +84,17 @@ def coachHome():
                 )
             db.commit()
     return render_template('home/coachHome.html', feedPosts=feedPosts, journalPosts=journalPosts, exercises=exercises, userList = userList)
+
+'''
+{% for user in userList%}
+
+                            <div style="background-color: aqua; margin-right: 10%;">
+                                <li class="list-item">
+                                    <h4 onclick="myFunction()">{{ journal['username'] }}</h5>
+                                    <p id="myDIV" style="display: block;">{{ journal.body }}</p>
+                                </li>
+                            </div>
+
+                            {% endfor %}
+
+'''

@@ -18,6 +18,7 @@
                     <div class="div-block-3">
                         <h3>Athlete posts</h3>
                     </div>
+                    
                     <div class="div-block-2"  style="max-height: 100%;">
                         <ul role="list" class="list" style="overflow: auto; height: 700px;">
 
@@ -32,22 +33,27 @@
                                         x.style.display = "block";
                                       } else {
                                         x.style.display = "none";
-                                        console.log(0);
                                       }
                                 }
                             </script>
-                            {% for journal in journalPosts %}
-                            
+
+
+                            {% for user in userList %}
                             <div style="background-color: aqua; margin-right: 10%;">
-                                <li class="list-item">
-                                    <h4 onclick="myFunction()">{{ journal['username'] }}</h5>
+                            <li class="list-item">
+                                <h4 onclick="myFunction()">{{ user['username'] }}</h5>
+                                    {% for journal in journalPosts %}
+                                    {% if journal['username'] == user['username'] %}
                                         <p id="myDIV" style="display: block;">{{ journal.body }}</p>
-                                    <div ><p >endjournal</p></div>
-                                    CONVERT MON
-                                </li>
+                                    {% endif %}
+                                    {% endfor %}
+                            </li>
                             </div>
                             {% endfor %}
 
+
+
+                            
                         </ul>
                     </div>
 

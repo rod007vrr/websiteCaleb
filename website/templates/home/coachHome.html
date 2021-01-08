@@ -23,12 +23,8 @@
                         <ul role="list" class="list" style="overflow: auto; height: 700px;">
 
                             <script>
-
-                                for (i = 0; i < cars.length; i++) {
-                                    text += cars[i] + "<br>";
-                                }
-                                function myFunction() {
-                                      var x = document.getElementById("myDIV");
+                                function myFunction(uID) {
+                                      var x = document.getElementById(uID);
                                       if (x.style.display === "none") {
                                         x.style.display = "block";
                                       } else {
@@ -40,14 +36,16 @@
 
                             {% for user in userList %}
                             <div style="background-color: aqua; margin-right: 10%;">
-                            <li class="list-item">
-                                <h4 onclick="myFunction()">{{ user['username'] }}</h5>
-                                    {% for journal in journalPosts %}
-                                    {% if journal['username'] == user['username'] %}
-                                        <p id="myDIV" style="display: block;">{{ journal.body }}</p>
-                                    {% endif %}
-                                    {% endfor %}
-                            </li>
+                                <li class="list-item">
+                                    <h4 onclick="myFunction('{{user.username}}')">{{ user['username'] }}</h4>
+                                    <div id={{user.username}} style="display: block;"> 
+                                        {% for journal in journalPosts %}
+                                            {% if journal['username'] == user['username'] %}
+                                                <p>{{ journal.body }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>   
+                                </li>
                             </div>
                             {% endfor %}
 

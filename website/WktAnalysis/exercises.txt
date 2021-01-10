@@ -1,0 +1,4 @@
+Pushup
+    Arms: 10
+    Core: 10
+    Chest: 10

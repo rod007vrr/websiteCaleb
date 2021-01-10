@@ -10,4 +10,3 @@ class Node:
         print(self.data)
         for n in self.subNodes:
             n.printTree()
-        

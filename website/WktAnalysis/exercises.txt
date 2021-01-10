@@ -1,4 +1,9 @@
-Pushup
+Pushup:
     Arms: 10
     Core: 10
     Chest: 10
+
+Squat:
+    Legs: 10
+    Core: 10
+

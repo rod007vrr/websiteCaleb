@@ -1,0 +1,34 @@
+Body
+    Upper
+        Back
+            Trapezius
+            Rhomboids
+            Latissimus
+            Erector spinae
+        Shoulders
+            Anterior deltoid
+            Lateral deltoid
+            Posterior deltoid
+        Chest
+            Pectoralis major
+                Upper pectoralis major
+                Lower pectorals major
+        Arms
+            Upper arm
+                Tricep
+                Bicep
+            Forearm
+    Core
+        Rectus abdominis
+        Obliques
+    Lower
+        Thighs
+            Quadriceps
+            Hamstrings
+            Gluteus
+            Adductors
+            Abductors
+        Calfs
+            Outer calf
+            Inner calf
+            Frontal calf

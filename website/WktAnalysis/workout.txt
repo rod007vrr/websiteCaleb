@@ -1,1 +1,2 @@
-200 Pushups
+Pushup: 200
+Squat: 10

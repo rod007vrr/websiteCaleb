@@ -6,8 +6,8 @@ from Classes.person import Person
 
 test = Person(0)
 
-test.stats.printTree()
+test.bodyTree.printTree()
 
 test.updateStats("workout.txt")
 
-test.stats.printTree()
+#test.stats.printTree()

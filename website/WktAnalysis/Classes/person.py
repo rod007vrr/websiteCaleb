@@ -1,11 +1,17 @@
 class Person:
     class Node:
-        def __init__(self, data):
+        def __init__(self, data, head):
             self.data = data
             self.subNodes = []
-            
+            self.head = head
+            ''' add in a path to the the root node
+            while root != None:
+                [] #make an optional header argument so that it can call back to there
+            '''
         def insert(self, node):
             self.subNodes.append(node)
+        def getHead(self):
+            return self.head
             
         def printTree(self):
             print(self.data)
@@ -18,18 +24,26 @@ class Person:
         #Constructing body tree
         with open(r"body.txt", 'r') as file: #!change filename
             data = [str(line.replace("    ", "?")).strip() for line in file]
-        self.bodyTree = Person.Node({data[0]: 0})
+        self.bodyTree = Person.Node({data[0]: 0}, None)
         del data[0]
         currentRoot = self.bodyTree
-        for part in data:
-            if part.count("?") > list(currentRoot.data.keys())[0].count("?"):
-                currentRoot.insert(Person.Node({part.strip("?"): 0}))
-            elif part.count("?") <= list(currentRoot.data.keys())[0].count("?"):
-                currentRoot = Person.Node({part.strip("?"): 0})
         
-        self.stats = currentRoot
-        
-        #Constructing exercises
+        for item in data:
+            if item.count("?") > list(currentRoot.data.keys())[0].count("?"):
+                temp = Person.Node({item:0}, currentRoot)
+                currentRoot.insert(temp)
+                currentRoot = temp
+            elif item.count("?") == list(currentRoot.data.keys())[0].count("?"):
+                temp = Person.Node({item:0}, currentRoot.head)
+                currentRoot.head.insert(temp)
+                currentRoot = temp
+            elif item.count("?") < list(currentRoot.data.keys())[0].count("?"):
+                current = currentRoot
+                while item.count("?") - list(current.data.keys())[0].count("?") != 1:
+                    current = current.getHead()
+                temp = Person.Node({item: 0}, current)
+                current.insert(temp)
+                currentRoot = temp
         with open(r"exercises.txt", 'r') as file: #!change filename
             data = [line for line in file]
             
@@ -53,25 +67,11 @@ class Person:
         
         def processExercise(exercise, reps):
             for bpName, bpAmount in self.exercises[exercise].items():
-                updateSpec(self.bodyTree ,bpName, bpAmount*reps)
+                updateSpec(bpName, bpAmount*reps)
                 
-        def updateSpec(source ,name, amount):
-
-            
-            try:
-                source.data[name] += amount
-            except:
-                pass
-            
-            for n in source.subNodes:
-                try:
-                    n.data[name] += amount
-                    for x in n.subNodes:
-                        x.data
-                        
-                except:
-                    pass
-                
+        def updateSpec(name, amount):
+            '''if at any point head is or contains the element then up it'''
+               
                         
                 
                 

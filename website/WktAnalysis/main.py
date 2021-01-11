@@ -1,20 +1,5 @@
-from Classes.tree import Node
 from Classes.exercise import Exercise
 from Classes.person import Person
-
-#Constructing body tree
-with open(r"body.txt", 'r') as file: #!change filename
-    data = [str(line.replace("    ", "?")).strip() for line in file]
-bodyTree = Node({data[0]: 0})
-del data[0]
-
-currentRoot = bodyTree
-
-for part in data:
-    if part.count("?") > list(currentRoot.data.keys())[0].count("?"):
-        currentRoot.insert(Node({part.strip("?"): 0}))
-    elif part.count("?") <= list(currentRoot.data.keys())[0].count("?"):
-        currentRoot = Node({part.strip("?"): 0})
 
 #Constructing exercises
 with open(r"exercises.txt", 'r') as file: #!change filename
@@ -36,4 +21,8 @@ for n in data:
 
 #Testing for individual person
 
-test = Person(0, deepCopy(bodyTree))
+test = Person(0)
+
+test.stats.printTree()
+
+test.updateStats()

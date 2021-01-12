@@ -1,8 +1,6 @@
 Body
     Upper
         Back
-        bozo
-        dum dum
             Trapezius
             Rhomboids
             Latissimus

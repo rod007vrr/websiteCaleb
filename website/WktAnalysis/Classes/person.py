@@ -10,8 +10,11 @@ class Person:
             '''
         def insert(self, node):
             self.subNodes.append(node)
+            
         def getHead(self):
             return self.head
+        def getSubnodes(self):
+            return self.subNodes
             
         def printTree(self):
             print(self.data)
@@ -44,6 +47,18 @@ class Person:
                 temp = Person.Node({item: 0}, current)
                 current.insert(temp)
                 currentRoot = temp
+                
+        def clearQ(node):
+            if list(node.data.keys())[0] == "Body":
+                pass
+            else:
+                node.data[list(node.data.keys())[0].strip("?")] = 0
+                del node.data[list(node.data.keys())[0]]
+            for subNode in node.subNodes:
+                clearQ(subNode)
+        
+        clearQ(self.bodyTree)
+                
         with open(r"exercises.txt", 'r') as file: #!change filename
             data = [line for line in file]
             
@@ -67,11 +82,16 @@ class Person:
         
         def processExercise(exercise, reps):
             for bpName, bpAmount in self.exercises[exercise].items():
-                updateSpec(bpName, bpAmount*reps)
+                updateSpec(self.bodyTree, bpName, bpAmount*reps)
                 
-        def updateSpec(name, amount):
+        def updateSpec(tree, name, amount):
             '''if at any point head is or contains the element then up it'''
-               
+            for n in tree.getSubnodes():
+                try:
+                    n.data[name] += amount
+                except KeyError:
+                    pass
+                updateSpec(n, name, amount)
                         
                 
                 

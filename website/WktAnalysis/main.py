@@ -10,4 +10,4 @@ test.bodyTree.printTree()
 
 test.updateStats("workout.txt")
 
-#test.stats.printTree()
+#test.bodyTree.printTree()

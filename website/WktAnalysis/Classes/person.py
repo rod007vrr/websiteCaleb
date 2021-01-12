@@ -83,21 +83,24 @@ class Person:
         def processExercise(exercise, reps):
             for bpName, bpAmount in self.exercises[exercise].items():
                 updateSpec(self.bodyTree, bpName, bpAmount*reps)
+        
+        def updateAll(node, amount):
+            node.data[list(node.data.keys())[0]] = self.amount
+            
+            for subNode in node.subNodes:
+                updateAll(subNode, self.amount)
+                
                 
         def updateSpec(tree, name, amount):
-            '''if at any point head is or contains the element then up it'''
+            self.amount = amount
             for n in tree.getSubnodes():
                 try:
                     n.data[name] += amount
+                    updateAll(n, amount)
                 except KeyError:
                     pass
                 updateSpec(n, name, amount)
-                        
                 
-                
-            
-            
-        
         with open(workout, 'r') as file:
             data = [line for line in file]
             

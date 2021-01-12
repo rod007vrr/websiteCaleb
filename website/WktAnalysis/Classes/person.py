@@ -78,8 +78,6 @@ class Person:
                 tempPairs[pair[0].strip()] = int(pair[1].strip())
 
     def updateStats(self, workout):
-        
-        
         def processExercise(exercise, reps):
             for bpName, bpAmount in self.exercises[exercise].items():
                 updateSpec(self.bodyTree, bpName, bpAmount*reps)
@@ -89,8 +87,7 @@ class Person:
             
             for subNode in node.subNodes:
                 updateAll(subNode, self.amount)
-                
-                
+                     
         def updateSpec(tree, name, amount):
             self.amount = amount
             for n in tree.getSubnodes():

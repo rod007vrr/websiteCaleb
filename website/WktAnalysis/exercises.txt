@@ -1,3 +1,4 @@
 Pushup:
     Arms: 10
+    Chest: 10
 

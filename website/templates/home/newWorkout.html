@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>home</title>
+<html>
+<body style="background-color: #F3FFFF;">
+    <div>
+        <h1>New workout</h1>
+        <form method="post">
+            <label for="workoutTitle">Date</label>
+            <input name="workoutTitle" id="workoutTitle" required class="w-input">
+            <label for="workoutBody">Wowrkout</label>
+            <textarea name="workoutBody" id="workoutTitle" required>Exercise: Reps</textarea>
+            <input type="submit" value="Post" class="w-button">
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

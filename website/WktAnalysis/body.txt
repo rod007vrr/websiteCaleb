@@ -28,7 +28,7 @@ Body
             Gluteus
             Adductors
             Abductors
-        Calfs
+        Calves
             Outer calf
             Inner calf
             Frontal calf

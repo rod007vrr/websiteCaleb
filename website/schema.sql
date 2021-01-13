@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS feedPosts;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS journalPosts;
-DROP TABLE IF EXISTS exercises;
+DROP TABLE IF EXISTS userWorkout;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,7 +11,6 @@ CREATE TABLE user (
   isCoach INTEGER DEFAULT 0,
   tags TEXT 
 );
-
 
 CREATE TABLE feedPosts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,7 +25,6 @@ CREATE TABLE tags (
     title TEXT NOT NULL
 );
 
-
 CREATE TABLE journalPosts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -35,8 +33,9 @@ CREATE TABLE journalPosts (
     FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
-CREATE TABLE exercises (
+CREATE TABLE userWorkout (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
-    descript TEXT NOT NULL
-)
+    descript TEXT NOT NULL,
+    author_id INTEGER NOT NULL
+);

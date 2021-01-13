@@ -19,7 +19,7 @@ class Person:
         def printTree(self):
             print(self.data)
             for n in self.subNodes:
-                n.printTree() 
+                n.printTree()
                 
     def __init__(self, UUID): #! Change this function to take the paths to the exercises as inputs
         self.UUID = UUID

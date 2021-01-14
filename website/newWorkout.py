@@ -19,6 +19,9 @@ def newWorkout():
     if request.method == 'POST':
         title = request.form['workoutTitle']
         body = request.form['workoutBody']
+        bodyToHtml = '"'+body+'"'
+        bodyToHtml = body.replace('\n','"<br>" ')
+        
         error = None
         if not body or not title:
             error = 'Body is required'
@@ -30,7 +33,12 @@ def newWorkout():
             db.execute(
                 'INSERT INTO userWorkout (title, descript, author_id)'
                 ' VALUES (?, ?, ?)',
-                (title, body, g.user['id'])
+                (title, bodyToHtml, g.user['id'])
             )
             db.commit()
+            if error is None:
+                if session["isCoach"] == 1:
+                    return redirect(url_for("coachHome.coachHome"))
+                return redirect(url_for("home.home"))
+        
     return render_template("home/newWorkout.html")

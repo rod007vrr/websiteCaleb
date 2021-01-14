@@ -27,6 +27,11 @@ def home():
         " From exercises"
         " ORDER BY title"
     ).fetchall()
+    workouts = db.execute(
+        "SELECT title, descript, author_id"
+        " From userWorkout"
+        " ORDER BY created"
+    ).fetchall()
     weeklySummary = "test string"
     if request.method == 'POST':
         body = request.form['journal']
@@ -46,4 +51,4 @@ def home():
             db.commit()
     return render_template("home/home.html", 
     feedPosts=feedPosts, journalPosts=journalPosts, 
-    exercises=exercises, weeklySummary=weeklySummary)
+    exercises=exercises, weeklySummary=weeklySummary, workouts=workouts)

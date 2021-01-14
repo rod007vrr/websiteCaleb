@@ -4,7 +4,6 @@ $env:FLASK_APP = "website"
 $env:FLASK_ENV = "development"
 flask run
 
-
 source venv/scripts/activate
 
 export FLASK_APP=website

@@ -74,20 +74,13 @@
                         <h3 class="heading-3"><a href="{{ url_for('newWorkout.newWorkout') }}"> upload workout</a></h2>
                         <div class="div-block-7">
                             <ul role="list" class="list-3">
-                                {% for exercise in exercises %} <!-- change to loop through the past workouts-->
+                                {% for workout in workouts%} <!-- change to loop through the past workouts-->
                                 <li>
-                                    <div class="w-row">
-                                        <div class="w-col w-col-4">
-                                            <img
-                                                src="website\templates\home\images\placeholder.png"
-                                                alt="">
+                                    <div class="w-col w-col-8">
+                                        <div>
+                                            <h4>{{ workout['title'] }}</h4>
                                         </div>
-                                        <div class="w-col w-col-8">
-                                            <div>
-                                                <h4>{{ exercise['title'] }}</h4>
-                                            </div>
-                                            <p>{{ exercise['descript'] }}</p>
-                                        </div>
+                                        <p>{{ workout['descript'] }}</p>
                                     </div>
                                 </li>
                                 {% endfor %}
@@ -110,3 +103,25 @@
 
 </html>
 {% endblock %}
+
+<!--
+
+{% for exercise in exercises %} 
+<li>
+    <div class="w-row">
+        <div class="w-col w-col-4">
+            <img
+                src="website\templates\home\images\placeholder.png"
+                alt="">
+        </div>
+        <div class="w-col w-col-8">
+            <div>
+                <h4>{{ exercise['title'] }}</h4>
+            </div>
+            <p>{{ exercise['descript'] }}</p>
+        </div>
+    </div>
+</li>
+{% endfor %}
+
+-->

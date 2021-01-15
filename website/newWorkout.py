@@ -19,8 +19,7 @@ def newWorkout():
     if request.method == 'POST':
         title = request.form['workoutTitle']
         body = request.form['workoutBody']
-        bodyToHtml = '"'+body+'"'
-        bodyToHtml = body.replace('\n','"<br>" ')
+        bodyToHtml = body.replace('\n','newLine')
         
         error = None
         if not body or not title:

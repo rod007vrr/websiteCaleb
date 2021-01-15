@@ -28,7 +28,7 @@ def home():
         " ORDER BY title"
     ).fetchall()
     workouts = db.execute(
-        "SELECT title, descript, author_id"
+        "SELECT id, title, descript, author_id"
         " From userWorkout"
         " ORDER BY created"
     ).fetchall()

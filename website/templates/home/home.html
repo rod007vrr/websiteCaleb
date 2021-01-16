@@ -76,7 +76,7 @@
                             <ul role="list" class="list-3">
                                 <script>
                                     function lines(id){
-                                        document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/newLine/g, '<br>');
+                                        document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
                                     };
                                 </script>
                                 {% for workout in workouts%}

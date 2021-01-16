@@ -4,28 +4,25 @@ class Person:
             self.data = data
             self.subNodes = []
             self.head = head
-            ''' add in a path to the the root node
-            while root != None:
-                [] #make an optional header argument so that it can call back to there
-            '''
         def insert(self, node):
             self.subNodes.append(node)
-            
+              
+        def printTree(self, items):
+            items.append(self.data[list(self.data.keys())[0]])
+            #print(self.data)
+            for n in self.subNodes:
+                n.printTree(items)
+            return items
+                
         def getHead(self):
             return self.head
         def getSubnodes(self):
             return self.subNodes
-            
-        def printTree(self):
-            print(self.data)
-            for n in self.subNodes:
-                n.printTree()
                 
-    def __init__(self, UUID): #! Change this function to take the paths to the exercises as inputs
-        self.UUID = UUID
+    def __init__(self):
         
         #Constructing body tree
-        with open(r"body.txt", 'r') as file: #!change filename
+        with open(r"website\WktAnalysis\body.txt", 'r') as file:
             data = [str(line.replace("    ", "?")).strip() for line in file]
         self.bodyTree = Person.Node({data[0]: 0}, None)
         del data[0]
@@ -59,7 +56,7 @@ class Person:
         
         clearQ(self.bodyTree)
                 
-        with open(r"exercises.txt", 'r') as file: #!change filename
+        with open(r"website\WktAnalysis\exercises.txt", 'r') as file:
             data = [line for line in file]
             
         self.exercises = {}
@@ -77,7 +74,7 @@ class Person:
                 pair = n.split(":")
                 tempPairs[pair[0].strip()] = int(pair[1].strip())
 
-    def updateStats(self, workout):
+    def updateStats(self, data):
         def processExercise(exercise, reps):
             for bpName, bpAmount in self.exercises[exercise].items():
                 updateSpec(self.bodyTree, bpName, bpAmount*reps)
@@ -98,10 +95,8 @@ class Person:
                     pass
                 updateSpec(n, name, amount)
                 
-        with open(workout, 'r') as file:
-            data = [line for line in file]
+        
             
         for n in data:
             splitD = n.split(":")
             processExercise(splitD[0].strip(), int(splitD[1]))
-   

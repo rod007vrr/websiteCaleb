@@ -40,6 +40,7 @@ CREATE TABLE userWorkout (
     title TEXT NOT NULL,
     descript TEXT NOT NULL,
     author_id INTEGER NOT NULL,
+    bodyData TEXT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES user (id)
 
 );
@@ -48,4 +49,4 @@ CREATE TABLE exercises (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     descript TEXT NOT NULL
-)
+);

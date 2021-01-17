@@ -25,26 +25,18 @@ def newWorkout():
         if error is not None:
             flash(error)
         else:
+            temp = Person()
+            workoutCopy = [n.removesuffix("\r") for n in workout.split("\n")]
+            temp.updateStats(workoutCopy)
+            numbers = str(temp.bodyTree.printTree([]))
+            
             db = get_db()
             db.execute(
-                'INSERT INTO userWorkout (title, descript, author_id)'
-                ' VALUES (?, ?, ?)',
-                (title, workout, g.user['id'])
+                'INSERT INTO userWorkout (title, descript, author_id, bodyData)'
+                ' VALUES (?, ?, ?, ?)',
+                (title, workout, g.user['id'], numbers)
             )
             db.commit()
-            
-            
-            
-            #autogen a 0 for everyone when first making
-            
-            temp = Person()
-            workout = [n.removesuffix("\r") for n in workout.split("\n")]
-            temp.updateStats(workout)
-            print(temp.bodyTree.printTree([]))
-            
-            #work magic here
-            #calc body changes and move to db
-            #move workout as thing or whatever
             
             if error is None:
                 if session["isCoach"] == 1:

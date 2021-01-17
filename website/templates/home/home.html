@@ -81,14 +81,8 @@
                                 </script>
                                 {% for workout in workouts%}
                                 <li>
-                                    <div class="w-col w-col-8">
-                                        <div>
-                                            <h4>{{ workout['title'] }}</h4>
-                                        </div>
-                                        
-                                        <p id="{{ workout.id }}">{{ workout['descript'] }}</p>
-                                        
-                                    </div>
+                                    <h4>{{ workout['title'] }}</h4>
+                                    <p id="{{ workout.id }}">{{ workout['descript'] }}</p>
                                     <script>
                                         window.onload(lines('{{workout.id}}'));
                                     </script>

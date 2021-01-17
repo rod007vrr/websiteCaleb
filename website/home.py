@@ -28,7 +28,7 @@ def home():
         " ORDER BY title"
     ).fetchall()
     workouts = db.execute(
-        "SELECT id, title, descript, author_id"
+        "SELECT id, title, descript, author_id, bodyData"
         " From userWorkout"
         " ORDER BY created"
     ).fetchall()
@@ -49,6 +49,7 @@ def home():
                 (body, g.user['id'])
             )
             db.commit()
+            return redirect(url_for("home.home"))
     return render_template("home/home.html", 
     feedPosts=feedPosts, journalPosts=journalPosts, 
     exercises=exercises, weeklySummary=weeklySummary, workouts=workouts)

@@ -15,14 +15,14 @@ bp = Blueprint('newExercise', __name__)
 def newExercise():
     db = get_db()
     exercises = db.execute(
-        "SELECT title, descript"
+        "SELECT id, title, descript"
         " FROM exercises"
         " ORDER BY title"
     )
     if request.method == 'POST':
         name = request.form['exerName']
         description = request.form['exerDescript']
-        
+        print(description)
         error = None
         if not name or not description:
             error = 'Body is required'

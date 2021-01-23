@@ -14,10 +14,17 @@ bp = Blueprint('newWorkout', __name__)
 @login_required
 def newWorkout():
     db = get_db()
+    exercises = db.execute(
+        "SELECT id, title, descript"
+        " FROM exercises"
+        " ORDER BY title"
+    )
+    
+    
+        
     if request.method == 'POST':
         title = request.form['workoutTitle']
         workout = request.form['workoutBody']
-        print(workout)
         error = None
         if not workout or not title:
             error = 'Body is required'
@@ -25,12 +32,20 @@ def newWorkout():
         if error is not None:
             flash(error)
         else:
-            temp = Person()
+            
+            exText = []
+            for exercise in exercises:
+                exText.append(exercise['title'])
+                
+                for n in ['?' + n.removesuffix('\r') for n in exercise['descript'].split('\n')]:
+                    exText.append(n)
+                exText.append('END')
+            
+            temp = Person(exText)
             workoutCopy = [n.removesuffix("\r") for n in workout.split("\n")]
             temp.updateStats(workoutCopy)
             numbers = str(temp.bodyTree.printTree([]))
             
-            db = get_db()
             db.execute(
                 'INSERT INTO userWorkout (title, descript, author_id, bodyData)'
                 ' VALUES (?, ?, ?, ?)',
@@ -38,9 +53,11 @@ def newWorkout():
             )
             db.commit()
             
+            
+            
             if error is None:
                 if session["isCoach"] == 1:
                     return redirect(url_for("coachHome.coachHome"))
                 return redirect(url_for("home.home"))
         
-    return render_template("home/newWorkout.html")
+    return render_template("home/newWorkout.html", exercises=exercises)

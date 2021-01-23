@@ -35,14 +35,20 @@
     <div class="column">
         <div class="div-block-7">
             <ul role="list" class="list-3">
+                <script>
+                    function lines(id){
+                        document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
+                    };
+                </script>
                 {% for exercise in exercises %}
                 <li>
-                        <div class="w-col w-col-8">
-                            <div>
-                                <h4>{{ exercise['title'] }}</h4>
-                            </div>
-                            <p>{{ exercise['descript'] }}</p>
-                        </div>
+                    <div class="w-col w-col-8">
+                        <h4>{{ exercise['title'] }}</h4>
+                        <p id="{{ exercise.id }}">{{ exercise['descript'] }}</p>
+                    </div>
+                    <script>
+                        window.onload(lines('{{exercise.id}}'));
+                    </script>
                 </li>
                 {% endfor %}
             </ul>

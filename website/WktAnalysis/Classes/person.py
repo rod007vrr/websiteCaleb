@@ -19,7 +19,7 @@ class Person:
         def getSubnodes(self):
             return self.subNodes
                 
-    def __init__(self):
+    def __init__(self, exerciseDB):
         
         #Constructing body tree
         with open(r"website\WktAnalysis\body.txt", 'r') as file:
@@ -55,24 +55,22 @@ class Person:
                 clearQ(subNode)
         
         clearQ(self.bodyTree)
-                
-        with open(r"website\WktAnalysis\exercises.txt", 'r') as file:
-            data = [line for line in file]
-            
+        
+        
         self.exercises = {}
         tempName = ""
         tempPairs = {}
         
-        for n in data:
-            if n == "\n":
-                self.exercises[tempName[:-2]] = tempPairs
+        for n in exerciseDB:
+            if n == "END":
+                self.exercises[tempName] = tempPairs
                 tempName = ""
                 tempPairs = {}
-            elif not n.startswith("    "):
-                tempName = n.strip(":")
+            elif not n.startswith("?"):
+                tempName = n
             else:
                 pair = n.split(":")
-                tempPairs[pair[0].strip()] = int(pair[1].strip())
+                tempPairs[pair[0].strip("?")] = int(pair[1].strip())
 
     def updateStats(self, data):
         def processExercise(exercise, reps):

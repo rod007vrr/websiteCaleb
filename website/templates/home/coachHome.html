@@ -83,42 +83,13 @@
                 <div class="div-block-5">
                     <div class="div-block-4">
                         <div>
-                            <h1 class="heading-2">Exercises</h1>
+                            <h1 class="heading-2"><a href="{{ url_for('newExercise.newExercise') }}">Exercises</a></h1>
                         </div>
-                        <div class="div-block-7">
-                            <ul role="list" class="list-3">
-                                {% for exercise in exercises %}
-                                <li>
-                                    <div class="w-row">
-                                        <div class="w-col w-col-4">
-                                            <img src="website\templates\home\images\placeholder.png" alt="">
-                                    </div>
-                                        <div class="w-col w-col-8">
-                                            <div>
-                                                <h4>{{ exercise['title'] }}</h4>
-                                            </div>
-                                            <p>{{ exercise['descript'] }}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="div-block-6">
                         <div>
-                            <h1>New Exercise</h1>
-                        </div>
-                        <div class="w-form">
-                            <form method="post">
-                                <label for="exerName">Exercise Name</label>
-                                <input name="exerName" id="exerName" required class="w-input">
-                                <label for="exerDescript">Description</label>
-                                <input name="exerDescript" id="exerDescript" required class="w-input">
-                                <input type="submit" value="Post" class="w-button">
-                            </form>
+                            <h3 class="heading-2">Athlete Workouts</h3>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

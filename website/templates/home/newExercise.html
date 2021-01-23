@@ -1,1 +1,57 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<style>
+
+    .column {
+        float: left;
+        width: 50%;
+      }
+      
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+</style>
+<div class="row">
+    <div class="column">
+        <div class="column">
+            <h1>New Exercise</h1>
+        </div>
+        <div class="column">
+            <h1><a href="{{ url_for('coachHome.coachHome') }}">back</a></h1>
+        </div>
+        <div class="w-form">
+            <form method="post">
+                <label for="exerName">Exercise Name</label>
+                <input name="exerName" id="exerName" required class="w-input">
+                <label for="exerDescript">Description</label>
+                <textarea name="exerDescript" id="exerDescript" required>Part: Amount</textarea>
+                <input type="submit" value="Post" class="w-button">
+            </form>
+        </div>
+    </div>
+    <div class="column">
+        <div class="div-block-7">
+            <ul role="list" class="list-3">
+                {% for exercise in exercises %}
+                <li>
+                        <div class="w-col w-col-8">
+                            <div>
+                                <h4>{{ exercise['title'] }}</h4>
+                            </div>
+                            <p>{{ exercise['descript'] }}</p>
+                        </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

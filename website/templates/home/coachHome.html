@@ -45,6 +45,7 @@
                                 </li>
                             </div>
                             {% endfor %}
+                            
                         </ul>
                     </div>
 
@@ -88,6 +89,35 @@
                         <div>
                             <h3 class="heading-2">Athlete Workouts</h3>
                         </div>
+                        <div>
+                        <script>
+                            function lines(id){
+                                document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
+                            };
+                        </script>
+                        <ul>
+                            {% for user in userList %}
+                            <li>
+                            <div>
+                                <h4 onclick="myFunction('{{user.id}}')">{{ user['username'] }}</h4>
+                                <div id={{user.id}}> 
+                                    <ul>
+                                    {% for workout in workouts %}
+                                        {% if workout['author_id'] == user['id'] %}
+                                            <li><p id="{{user.id}}  {{workout.id}}"">{{ workout.descript }}</p></li>
+                                        {% endif %}
+                                        <script>
+                                            window.onload(lines('{{user.id}}  {{workout.id}}'));
+                                        </script>
+                                    {% endfor %}
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        </div>    
                     </div>
                     
                 </div>

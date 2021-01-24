@@ -18,7 +18,7 @@ def coachHome():
     if session["isCoach"] == 0:
         return redirect(url_for("home.home"))
     userList = db.execute(
-        "SELECT username"
+        "SELECT id, username, isCoach"
         " FROM user"
         " ORDER BY id DESC"
     )
@@ -36,6 +36,11 @@ def coachHome():
         "SELECT title, descript"
         " From exercises"
         " ORDER BY title"
+    ).fetchall()
+    workouts = db.execute(
+        "SELECT id, title, descript, author_id, bodyData"
+        " From userWorkout"
+        " ORDER BY created"
     ).fetchall()
     if request.method == 'POST':
         title = request.form['postTitle']
@@ -88,4 +93,4 @@ def coachHome():
                 )
             '''
             db.commit()
-    return render_template('home/coachHome.html', feedPosts=feedPosts, journalPosts=journalPosts, exercises=exercises, userList = userList)
+    return render_template('home/coachHome.html', feedPosts=feedPosts, journalPosts=journalPosts, exercises=exercises, userList=list(userList), workouts=workouts)

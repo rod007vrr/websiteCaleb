@@ -27,22 +27,22 @@
                 <label for="exerName">Exercise Name</label>
                 <input name="exerName" id="exerName" required class="w-input">
                 <label for="exerDescript">Description</label>
-                <textarea name="exerDescript" id="exerDescript" required>Part: Amount</textarea>
+                <textarea name="exerDescript" id="exerDescript" required class="w-input">Part: Amount</textarea>
                 <input type="submit" value="Post" class="w-button">
             </form>
         </div>
     </div>
     <div class="column">
         <div class="div-block-7">
-            <ul role="list" class="list-3">
-                <script>
-                    function lines(id){
-                        document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
-                    };
-                </script>
+            <script>
+                function lines(id){
+                    document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
+                };
+            </script>
+            <ul>
                 {% for exercise in exercises %}
                 <li>
-                    <div class="w-col w-col-8">
+                    <div>
                         <h4>{{ exercise['title'] }}</h4>
                         <p id="{{ exercise.id }}">{{ exercise['descript'] }}</p>
                     </div>

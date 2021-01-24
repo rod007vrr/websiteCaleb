@@ -25,13 +25,13 @@
             <label for="workoutTitle">Title</label>
             <input name="workoutTitle" id="workoutTitle" required class="w-input">
             <label for="workoutBody">Workout</label>
-            <textarea name="workoutBody" id="workoutBody" required>Exercise: Reps</textarea>
+            <textarea name="workoutBody" id="workoutBody" required class="w-input">Exercise: Reps</textarea>
             <input type="submit" value="Post" class="w-button">
         </form>
     </div>
     <div class="column">
         <div class="div-block-7">
-            <ul role="list" class="list-3">
+            <ul>
                 <script>
                     function lines(id){
                         document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
@@ -39,7 +39,7 @@
                 </script>
                 {% for exercise in exercises %}
                 <li>
-                    <div class="w-col w-col-8">
+                    <div>
                         <h4>{{ exercise['title'] }}</h4>
                         <p id="{{ exercise.id }}">{{ exercise['descript'] }}</p>
                     </div>

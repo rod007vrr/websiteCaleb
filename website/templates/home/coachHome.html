@@ -64,7 +64,7 @@
                         <label for="postTitle">Title</label>
                         <input name="postTitle" id="postTitle" required class="w-input">
                         <label for="postBody">Body</label>
-                        <input name="postBody" id="postBody" required class="w-input">
+                        <textarea name="postBody" id="postBody" required class="w-input"></textarea>
                         <input type="submit" value="Post" class="w-button">
                     </form>
                 </div>
@@ -103,8 +103,8 @@
                                 <div id={{user.id}}> 
                                     <ul>
                                     {% for workout in workouts %}
-                                        {% if workout['author_id'] == user['id'] %}
-                                            <li><p id="{{user.id}}  {{workout.id}}"">{{ workout.descript }}</p></li>
+                                        {% if workout['author_id'] == user['id']%}
+                                            <li><p id="{{user.id}}  {{workout.id}}">{{ workout.descript }}</p></li>
                                         {% endif %}
                                         <script>
                                             window.onload(lines('{{user.id}}  {{workout.id}}'));

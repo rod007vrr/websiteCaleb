@@ -93,4 +93,5 @@ def coachHome():
                 )
             '''
             db.commit()
+            return redirect(url_for("coachHome.coachHome"))
     return render_template('home/coachHome.html', feedPosts=feedPosts, journalPosts=journalPosts, exercises=exercises, userList=list(userList), workouts=workouts)

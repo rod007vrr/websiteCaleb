@@ -42,7 +42,7 @@ class Person:
                 while item.count("?") - list(current.data.keys())[0].count("?") != 1:
                     current = current.getHead()
                 temp = Person.Node({item: 0}, current)
-                current.insert(temp)
+                current.insert(temp) 
                 currentRoot = temp
                 
         def clearQ(node):
@@ -92,9 +92,6 @@ class Person:
                 except KeyError:
                     pass
                 updateSpec(n, name, amount)
-                
-        
-            
         for n in data:
             splitD = n.split(":")
             processExercise(splitD[0].strip(), int(splitD[1]))

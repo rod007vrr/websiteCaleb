@@ -45,53 +45,17 @@ def coachHome():
     if request.method == 'POST':
         title = request.form['postTitle']
         body = request.form['postBody']
-        '''
-        name = request.form['exerName']
-        descript = request.form['exerDescript']
-        '''
         error = None
 
-
-        values = numpy.zeros((2,2), dtype=int)
-        formChoice = None
-        
-        if title:
-            values[0,0] = 1
-        if body:
-            values[0,1] = 1
-        '''
-        if name:
-            values[1,0] = 1
-        if descript:
-            values[1,1] = 1
-        '''
-        
-        for n in values[0]:
-            if n != 0:
-                formChoice = 0
-            else:
-                formChoice = 1
-        for n in values[formChoice]:
-            if n == 0:
-                error = 'Missing data in form'
         if error is not None:
             flash(error)
         else:
             db = get_db()
-            if formChoice == 0:
-                db.execute(
-                    'INSERT INTO feedPosts (title, body)'
-                    ' VALUES (?, ?)',
-                    (title, body)
-                )
-            '''
-            if formChoice == 1:
-                db.execute(
-                    'INSERT INTO exercises (title, descript)'
-                    ' VALUES (?, ?)',
-                    (name, descript)
-                )
-            '''
+            db.execute(
+                'INSERT INTO feedPosts (title, body)'
+                ' VALUES (?, ?)',
+                (title, body)
+            )
             db.commit()
             return redirect(url_for("coachHome.coachHome"))
     return render_template('home/coachHome.html', feedPosts=feedPosts, journalPosts=journalPosts, exercises=exercises, userList=list(userList), workouts=workouts)

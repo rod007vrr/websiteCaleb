@@ -30,9 +30,26 @@ def home():
     workouts = db.execute(
         "SELECT id, title, descript, author_id, bodyData"
         " From userWorkout"
-        " ORDER BY created"
+        " ORDER BY created DESC"
     ).fetchall()
-    weeklySummary = "test string"
+    
+    allData = []
+    
+    for n in range(5):
+        allData.append([int(n) for n in workouts[n]["bodyData"][1:-1].split(",")])
+    
+    bodyParts = ["Body", "Upper", "Back", "Trapezius", "Rhomboids", "Latissimus", "Erector spinae", "Shoulders", "Anterior deltoid", "Lateral deltoid", "Posterior deltoid", "Chest", "Pectoralis major", "Upper pectoralis major", "Lower pectorals major", "Arms", "Upper arm", "Tricep", "Bicep", "Forearm", "Core", "Rectus abdominis", "Obliques", "Lower", "Thighs", "Quadriceps", "Hamstrings", "Gluteus", "Adductors", "Abductors", "Calves", "Outer calf", "Inner calf", "Frontal calf"]
+    
+        
+    sumData = len(bodyParts)*[0]
+    
+    for n in range(len(bodyParts)):
+        for x in range(5):
+            sumData[n] += allData[x][n]
+    
+    dataToPrint = [bodyParts[n] + ": " + str(sumData[n]) for n in range(len(bodyParts))]
+    print(dataToPrint)
+    
     if request.method == 'POST':
         body = request.form['journal']
         error = None
@@ -52,4 +69,4 @@ def home():
             return redirect(url_for("home.home"))
     return render_template("home/home.html", 
     feedPosts=feedPosts, journalPosts=journalPosts, 
-    exercises=exercises, weeklySummary=weeklySummary, workouts=workouts)
+    exercises=exercises,  workouts=workouts, dataToPrint = dataToPrint)

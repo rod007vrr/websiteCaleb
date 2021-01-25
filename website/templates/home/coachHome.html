@@ -11,9 +11,6 @@
                 <div>
                     <h1 class="heading-4">Personal Journal</h1>
                 </div>
-
-                
-
                 <div>
                     <div class="div-block-3">
                         <h3>Athlete posts</h3>
@@ -32,15 +29,19 @@
                                 }
                             </script>
                             {% for user in userList %}
-                            <div style="background-color: aqua; margin-right: 10%;">
+                            <div >
                                 <li class="list-item">
                                     <h4 onclick="myFunction('{{user.username}}')">{{ user['username'] }}</h4>
                                     <div id={{user.username}} style="display: block;"> 
+                                        <ul>
                                         {% for journal in journalPosts %}
                                             {% if journal['username'] == user['username'] %}
+                                            <li>
                                                 <p>{{ journal.body }}</p>
+                                            </li>
                                             {% endif %}
                                         {% endfor %}
+                                        </ul>
                                     </div>   
                                 </li>
                             </div>
@@ -64,7 +65,7 @@
                         <label for="postTitle">Title</label>
                         <input name="postTitle" id="postTitle" required class="w-input">
                         <label for="postBody">Body</label>
-                        <textarea name="postBody" id="postBody" required class="w-input"></textarea>
+                        <textarea name="postBody" id="postBody" rows="4" required class="w-input"></textarea>
                         <input type="submit" value="Post" class="w-button">
                     </form>
                 </div>

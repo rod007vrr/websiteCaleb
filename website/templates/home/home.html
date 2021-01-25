@@ -96,8 +96,14 @@
                             <p></p>
                             <h1>Weekly summary</h1>
                         </div>
-                        <div>
-                            <p>Placeholder text</p>
+                        <div class="div-block-7">
+                            <p>These are the aggregate results of your past 5 workouts</p>
+                            <ul  role="list" class="list-3">
+                                {% for n in dataToPrint%}
+                                <li>{{n}}</li>
+                                {% endfor %}
+                            </ul>
+                            
                         </div>
                     </div>
                 </div>

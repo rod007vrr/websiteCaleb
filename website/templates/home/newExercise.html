@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 <style>
 
@@ -14,32 +15,31 @@
         clear: both;
       }
 </style>
-<div class="row">
-    <div class="column">
-        <div class="column">
-            <h1>New Exercise</h1>
-        </div>
-        <div class="column">
-            <h1><a href="{{ url_for('coachHome.coachHome') }}">back</a></h1>
-        </div>
-        <div class="w-form">
-            <form method="post">
-                <label for="exerName">Exercise Name</label>
-                <input name="exerName" id="exerName" required class="w-input">
-                <label for="exerDescript">Description</label>
-                <textarea name="exerDescript" id="exerDescript" required class="w-input">Part: Amount</textarea>
-                <input type="submit" value="Post" class="w-button">
-            </form>
-        </div>
+<title>home</title>
+<html>
+<body style="background-color: #F3FFFF;">
+    
+    <div class="column" style="padding: 25px 50px 25px">
+        <div><h1>New Exercise</h1></div>
+        
+        <form method="post">
+            <label for="exerName">Exercise Name</label>
+            <input name="exerName" id="exerName" required class="w-input">
+            <label for="exerDescript">Description</label>
+            <textarea name="exerDescript" id="exerDescript" rows="16" required class="w-input"> </textarea>
+            <input type="submit" value="Post" class="w-button">
+        </form>
+        <h5 style="padding: 0px 0px 0px"><a href="{{ url_for('coachHome.coachHome') }}">Back</a></h5>
     </div>
-    <div class="column">
+    <div class="column" style="padding: 25px 50px 25px">
+        <h1>Exercise List</h1>
         <div class="div-block-7">
-            <script>
-                function lines(id){
-                    document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
-                };
-            </script>
             <ul>
+                <script>
+                    function lines(id){
+                        document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(/\n/g, '<br>');
+                    };
+                </script>
                 {% for exercise in exercises %}
                 <li>
                     <div>
@@ -54,10 +54,6 @@
             </ul>
         </div>
     </div>
-</div>
-
-
-
-
+</body>
+</html>
 {% endblock %}
-

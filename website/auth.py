@@ -46,10 +46,6 @@ def load_logged_in_user():
 
 @bp.route("/register", methods=("GET", "POST"))
 def register():
-    """Register a new user.
-    Validates that the username is not already taken. Hashes the
-    password for security.
-    """
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -67,17 +63,13 @@ def register():
             error = f"User {username} is already registered."
 
         if error is None:
-            # the name is available, store it in the database and go to
-            # the login page
             db.execute(
                 "INSERT INTO user (username, password, iscoach) VALUES (?, ?, ?)",
                 (username, generate_password_hash(password), 0),
             )
             db.commit()
             return redirect(url_for("auth.login"))
-
         flash(error)
-
     return render_template("auth/register.html")
 
 
@@ -98,7 +90,6 @@ def login():
             error = "Incorrect password."
 
         if error is None:
-            # store the user id in a new session and return to the index
             session.clear()
             session["user_id"] = user["id"]
             session["isCoach"] = user["isCoach"]

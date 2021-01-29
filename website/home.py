@@ -38,7 +38,16 @@ def home():
     for n in range(5):
         allData.append([int(n) for n in workouts[n]["bodyData"][1:-1].split(",")])
     
-    bodyParts = ["Body", "Upper", "Back", "Trapezius", "Rhomboids", "Latissimus", "Erector spinae", "Shoulders", "Anterior deltoid", "Lateral deltoid", "Posterior deltoid", "Chest", "Pectoralis major", "Upper pectoralis major", "Lower pectorals major", "Arms", "Upper arm", "Tricep", "Bicep", "Forearm", "Core", "Rectus abdominis", "Obliques", "Lower", "Thighs", "Quadriceps", "Hamstrings", "Gluteus", "Adductors", "Abductors", "Calves", "Outer calf", "Inner calf", "Frontal calf"]
+    bodyParts = ["Body", "Upper", "Back", 
+                 "Trapezius", "Rhomboids", "Latissimus", 
+                 "Erector spinae", "Shoulders", "Anterior deltoid", 
+                 "Lateral deltoid", "Posterior deltoid", "Chest", 
+                 "Pectoralis major", "Upper pectoralis major", 
+                 "Lower pectorals major", "Arms", "Upper arm", 
+                 "Tricep", "Bicep", "Forearm", "Core", "Rectus abdominis", 
+                 "Obliques", "Lower", "Thighs", "Quadriceps", "Hamstrings", 
+                 "Gluteus", "Adductors", "Abductors", "Calves", "Outer calf", 
+                 "Inner calf", "Frontal calf"]
     
         
     sumData = len(bodyParts)*[0]

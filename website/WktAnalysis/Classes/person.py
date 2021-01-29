@@ -1,4 +1,4 @@
-class Person:
+class Person: 
     class Node:
         def __init__(self, data, head):
             self.data = data

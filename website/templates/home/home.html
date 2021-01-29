@@ -80,6 +80,7 @@
                                     };
                                 </script>
                                 {% for workout in workouts%}
+                                {%if workout['author_id'] == g.user['id']%}
                                 <li>
                                     <h4>{{ workout['title'] }}</h4>
                                     <p id="{{ workout.id }}">{{ workout['descript'] }}</p>
@@ -87,6 +88,7 @@
                                         window.onload(lines('{{workout.id}}'));
                                     </script>
                                 </li>
+                                {%endif%}
                                 {% endfor %}
                             </ul>
                         </div>
@@ -97,7 +99,7 @@
                             <h1>Weekly summary</h1>
                         </div>
                         <div class="div-block-7">
-                            <p>These are the aggregate results of your past 5 workouts</p>
+                            <p>These are the aggregate results of your past {{ amount }} workouts</p>
                             <ul  role="list" class="list-3">
                                 {% for n in dataToPrint%}
                                 <li>{{n}}</li>

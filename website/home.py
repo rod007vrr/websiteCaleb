@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, session
 )
 from werkzeug.exceptions import abort
 
@@ -35,8 +35,21 @@ def home():
     
     allData = []
     
-    for n in range(5):
-        allData.append([int(n) for n in workouts[n]["bodyData"][1:-1].split(",")])
+    amount = 5
+    
+    
+    
+    print("session id:" + str(session["user_id"]))
+    
+    
+    for n in range(len(workouts)):
+        if workouts[n]['author_id'] != session['user_id']:
+            del workouts[n]
+            
+        
+    
+    if len(workouts) <5:
+        amount = len(workouts)
     
     bodyParts = ["Body", "Upper", "Back", 
                  "Trapezius", "Rhomboids", "Latissimus", 
@@ -47,17 +60,22 @@ def home():
                  "Tricep", "Bicep", "Forearm", "Core", "Rectus abdominis", 
                  "Obliques", "Lower", "Thighs", "Quadriceps", "Hamstrings", 
                  "Gluteus", "Adductors", "Abductors", "Calves", "Outer calf", 
-                 "Inner calf", "Frontal calf"]
+                 "Inner calf", "Frontal calf"]    
     
+    if amount == 0:
+        dataToPrint = len(bodyParts)*[0]
+    else:
+    
+        for n in range(amount):
+            allData.append([int(n) for n in workouts[n]["bodyData"][1:-1].split(",")])
         
-    sumData = len(bodyParts)*[0]
-    
-    for n in range(len(bodyParts)):
-        for x in range(5):
-            sumData[n] += allData[x][n]
-    
-    dataToPrint = [bodyParts[n] + ": " + str(sumData[n]) for n in range(len(bodyParts))]
-    print(dataToPrint)
+        sumData = len(bodyParts)*[0]
+        
+        for n in range(len(bodyParts)):
+            for x in range(amount):
+                sumData[n] += allData[x][n]
+        
+        dataToPrint = [bodyParts[n] + ": " + str(sumData[n]) for n in range(len(bodyParts))]
     
     if request.method == 'POST':
         body = request.form['journal']
@@ -78,4 +96,4 @@ def home():
             return redirect(url_for("home.home"))
     return render_template("home/home.html", 
     feedPosts=feedPosts, journalPosts=journalPosts, 
-    exercises=exercises,  workouts=workouts, dataToPrint = dataToPrint)
+    exercises=exercises,  workouts=workouts, dataToPrint = dataToPrint, amount=amount)

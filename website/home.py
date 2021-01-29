@@ -37,15 +37,20 @@ def home():
     
     amount = 5
     
-    
+    workoutsCopy = workouts.copy()
     
     print("session id:" + str(session["user_id"]))
     
     
     for n in range(len(workouts)):
-        if workouts[n]['author_id'] != session['user_id']:
-            del workouts[n]
-            
+        if workoutsCopy[n]['author_id'] != session['user_id']:
+            workoutsCopy[n] = 0
+    
+    workouts = []
+    
+    for n in workoutsCopy:
+        if n != 0:
+            workouts.append(n)
         
     
     if len(workouts) <5:
